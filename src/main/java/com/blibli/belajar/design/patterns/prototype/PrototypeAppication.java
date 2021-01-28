@@ -35,13 +35,22 @@ public class PrototypeAppication {
                     .discount(10)
                     .build();
         }
+
+        @Bean
+        @Scope("prototype")
+        public Customer premiumCustomer(){
+            return Customer.builder()
+                    .category("PRM")
+                    .discount(10)
+                    .build();
+        }
     }
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(Configuration.class);
-        Customer c1 = context.getBean(Customer.class);
-        Customer c2 = context.getBean(Customer.class);
-        Customer c3 = context.getBean(Customer.class);
+        Customer c1 = context.getBean("standardCustomer", Customer.class);
+        Customer c2 = context.getBean("standardCustomer", Customer.class);
+        Customer c3 = context.getBean("premiumCustomer", Customer.class);
 
         System.out.println(c1 == c2);
         System.out.println(c2 == c3);
