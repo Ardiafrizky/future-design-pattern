@@ -17,7 +17,6 @@ public class SingletonApplication {
     }
 
     public static class Contoh {
-
     }
 
     public static void main(String[] args) {
